@@ -8,33 +8,57 @@
 </head>
 <body>
 <div id="dashboard">
+    <!-- Contenedor principal para el dashboard de gestión -->
     <header>
+        <!-- Cabecera del dashboard -->
         <h1>Dashboard de Gestión de Alumnos</h1>
+        <!-- Título principal del dashboard -->
     </header>
     <section id="estadisticas">
+        <!-- Sección de estadísticas del dashboard -->
         <h2>Estadísticas</h2>
-        <div id="horasIngreso">Hora de mayor ingreso: <span>--:--</span></div>
-        <div id="alumnosFrecuentes">Alumnos que más ingresan: <ul></ul></div>
+        <!-- Título de la sección de estadísticas -->
+        <div id="horaMayorIngreso">Hora de mayor ingreso: <span>--:--</span></div>
+        <!-- Muestra la hora de mayor ingreso de alumnos -->
+        <div id="horaMenorIngreso">Hora de menor ingreso: <span>--:--</span></div>
+        <!-- Muestra la hora de menor ingreso de alumnos -->
+        <div id="carreraMasUsada">Carrera que más uso hace de la biblioteca: <span>-</span></div>
+        <!-- Muestra la carrera con más uso de la biblioteca -->
     </section>
     <section id="gestionAlumnos">
+        <!-- Sección para la gestión de alumnos -->
         <h2>Lista de Alumnos</h2>
+        <!-- Título de la sección de gestión de alumnos -->
+        <input type="text" id="buscarAlumno" placeholder="Buscar alumno...">
+        <!-- Campo de búsqueda para filtrar alumnos por nombre -->
         <table>
+            <!-- Tabla para mostrar la lista de alumnos -->
             <thead>
+                <!-- Encabezado de la tabla -->
                 <tr>
+                    <!-- Fila de encabezado -->
                     <th>ID</th>
+                    <!-- Columna de ID -->
                     <th>Nombre</th>
+                    <!-- Columna de Nombre -->
                     <th>Carrera</th>
+                    <!-- Columna de Carrera -->
                     <th>Semestre</th>
+                    <!-- Columna de Semestre -->
                     <th>Último Ingreso</th>
+                    <!-- Columna de Último Ingreso -->
                 </tr>
             </thead>
             <tbody>
+                <!-- Cuerpo de la tabla, donde se mostrarán los datos de los alumnos -->
                 <!-- Los datos se llenarán con JavaScript -->
             </tbody>
         </table>
     </section>
 </div>
 <script src="script.js"></script>
+<!-- Enlace al archivo JavaScript externo para funcionalidades interactivas -->
 </body>
 </html>
+
 
