@@ -7,6 +7,16 @@
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
+    <div id="login">
+        <form id="loginForm">
+            <label for="userid">ID:</label>
+            <input type="text" id="userid" name="userid" required>
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Ingresar</button>
+        </form>
+    </div>
+<div id="dashboard" style="display: none;">
 <div id="dashboard">
     <!-- Contenedor principal para el dashboard de gestión -->
     <header>
@@ -56,9 +66,8 @@
         </table>
     </section>
 </div>
+</div>
 <script src="script.js"></script>
 <!-- Enlace al archivo JavaScript externo para funcionalidades interactivas -->
 </body>
 </html>
-
-
