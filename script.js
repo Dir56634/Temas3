@@ -12,6 +12,7 @@ const alumnos = [
   { id: 10, nombre: "Roberto Gómez", carrera: "Química", semestre: "8°", ultimoIngreso: "04/04/2024 10:30 AM" },
   { id: 11, nombre: "Sofía Castro", carrera: "Historia", semestre: "1°", ultimoIngreso: "04/04/2024 11:45 AM" },
   { id: 12, nombre: "Miguel Ángel Torres", carrera: "Filosofía", semestre: "2°", ultimoIngreso: "03/04/2024 09:30 AM" },
+  {id: 13, nombre: "Jorge Gomez", carrera: "Ingeniería de Sistemas", semestre: "7°", ultimoIngreso: "09/04/2024 10:00 AM"},
 ];
 
 // Función para llenar la tabla de alumnos
@@ -73,7 +74,24 @@ function buscarAlumno() {
 
 // Event listener para el campo de búsqueda
 document.getElementById('buscarAlumno').addEventListener('keyup', buscarAlumno);
+const usuariosAutorizados = [
+  { id: 'prueba', password: 'prueba'},
+  { id: '167510', password: '167510' },
+  // Agrega más usuarios según necesario
+];
 
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+  const userid = document.getElementById('userid').value;
+  const password = document.getElementById('password').value;
+  const usuarioValido = usuariosAutorizados.find(user => user.id === userid && user.password === password);
+  if (usuarioValido) {
+      document.getElementById('login').style.display = 'none';
+      document.getElementById('dashboard').style.display = 'block';
+  } else {
+      alert('ID o contraseña incorrectos');
+  }
+});
 // Llamada inicial para llenar la tabla
 window.onload = function() {
   llenarTabla();
