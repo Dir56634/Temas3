@@ -72,6 +72,99 @@ function buscarAlumno() {
   llenarTabla(alumnosFiltrados);
 }
 
+function dibujarGraficas() {
+  const datosCarreras = alumnos.reduce((acc, alumno) => {
+      acc[alumno.carrera] = (acc[alumno.carrera] || 0) + 1;
+      return acc;
+  }, {});
+
+  const ctxCarreras = document.getElementById('chartCarreras').getContext('2d');
+  new Chart(ctxCarreras, {
+      type: 'bar',
+      data: {
+          labels: Object.keys(datosCarreras),
+          datasets: [{
+              label: 'Número de alumnos por carrera',
+              data: Object.values(datosCarreras),
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.6)',
+                  'rgba(54, 162, 235, 0.6)',
+                  'rgba(255, 206, 86, 0.6)',
+                  'rgba(75, 192, 192, 0.6)',
+                  'rgba(153, 102, 255, 0.6)',
+                  'rgba(255, 159, 64, 0.6)',
+                  'rgba(199, 199, 199, 0.6)',
+                  'rgba(83, 102, 255, 0.6)',
+                  'rgba(40, 159, 44, 0.6)',
+                  'rgba(145, 234, 228, 0.6)'
+              ],
+              borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)',
+                  'rgba(199, 199, 199, 1)',
+                  'rgba(83, 102, 255, 1)',
+                  'rgba(40, 159, 44, 1)',
+                  'rgba(145, 234, 228, 1)'
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          responsive: true,
+          scales: {
+              y: {
+                  beginAtZero: true
+              }
+          },
+          plugins: {
+              legend: {
+                  display: false // Ocultar leyenda si es necesario
+              }
+          }
+      }
+  });
+
+  const ctxAccesosHora = document.getElementById('chartAccesosHora').getContext('2d');
+  const horasIngreso = {};
+  
+  alumnos.forEach(alumno => {
+    const hora = alumno.ultimoIngreso.split(' ')[1]; // Obtener sólo la hora, ignorar la fecha
+    if (horasIngreso[hora]) {
+      horasIngreso[hora]++;
+    } else {
+      horasIngreso[hora] = 1;
+    }
+  });
+
+  const horas = Object.keys(horasIngreso);
+  const cantidades = Object.values(horasIngreso);
+
+  new Chart(ctxAccesosHora, {
+      type: 'bar',
+      data: {
+          labels: horas,
+          datasets: [{
+              label: 'Ingresos por Hora',
+              data: cantidades,
+              backgroundColor: 'rgba(249, 116, 0, 0.6)',
+              borderColor: 'rgba(3, 89, 25, 1)',
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              y: {
+                  beginAtZero: true
+              }
+          }
+      }
+  });
+}
+
 // Event listener para el campo de búsqueda
 document.getElementById('buscarAlumno').addEventListener('keyup', buscarAlumno);
 const usuariosAutorizados = [
@@ -96,4 +189,5 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
 window.onload = function() {
   llenarTabla();
   calcularEstadisticas();
+  dibujarGraficas();
 };
